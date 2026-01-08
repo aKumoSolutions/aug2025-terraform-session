@@ -1,0 +1,1 @@
+# aug2025-terraform-session

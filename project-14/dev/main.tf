@@ -23,3 +23,30 @@ module "ec2" {
 
 // Syntax: module.module_name.output_name
 // Example: module.sg.security_group_id
+
+// Calling a child module from Terraform Registry
+module "s3-bucket" {
+  source  = "terraform-aws-modules/s3-bucket/aws"
+  version = "5.10.0"
+
+  bucket = "terraform-aws-session-s3-bucket-kris"
+}
+
+// Calling a child module from Github Repository
+module "web-sg" {
+    source = "github.com/aKumoSolutions/aug2025-terraform-session//modules/sg"
+
+    name = "web-sg"
+    description = "This is a web security group"
+}
+
+# github.com = Platform
+# /aKumoSolutions = Github Organization
+# /aug2025-terraform-session = Github Repository
+# /tree = 404 (?)
+# /main = Github Branch (default)
+# /modules = Subdirectory
+# /sg = Subdirectory
+
+
+// Terraform always look into a default branch
